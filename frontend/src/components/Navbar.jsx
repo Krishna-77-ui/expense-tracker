@@ -1,0 +1,4 @@
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Wallet, LayoutDashboard, ReceiptText, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+export default function Navbar(){const {user,signOut}=useAuth();const navigate=useNavigate();return <header className="topbar"><Link to="/dashboard" className="brand"><span className="brand-icon"><Wallet size={19}/></span><span>Pocket<span className="brand-accent">Wise</span></span></Link><nav><NavLink to="/dashboard"><LayoutDashboard size={16}/> Dashboard</NavLink><NavLink to="/expenses"><ReceiptText size={16}/> Expenses</NavLink></nav><div className="profile"><span className="avatar">{user?.name?.[0]?.toUpperCase()||'U'}</span><span className="profile-name">{user?.name}</span><button className="icon-button" title="Sign out" onClick={()=>{signOut();navigate('/login');}}><LogOut size={17}/></button></div></header>}
